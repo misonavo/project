@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if finance %}
+    {{moment(finance.createdate).calendar()}} by {{finance.author.fname}} {{finance.author.lname}} 
+    {% if finance.modifydate %}
+        modified {{moment(finance.modifydate).calendar()}}
+    {% endif %}
+    <br>
+    {% if finance.author == current_user %}
+        <a data-toggle="tooltip" data-placement="top" title="Delete Finance" href="/finance/delete/{{finance.id}}">
+            <img width="40" class="bottom-image" src="/static/delete.png">
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Edit Finance" href="/finance/edit/{{finance.id}}">
+            <img width="40" class="bottom-image" src="/static/edit.png">
+        </a>
+    {% endif %}
+
+    <h1 class="display-5">{{finance.title}}</h1>
+    <p class="fs-3 text-break">
+        {% if finance.author.image %}
+            <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(finance.author.image.read())}}">
+        {% endif %}
+            {{finance.title}} <br>
+            {{finance.explanation}} <br>
+            {{finance.question}}
+
+    </p>
+    
+{% else %}
+
+{% endif %}
+
+{% endblock %}

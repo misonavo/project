@@ -33,7 +33,15 @@ def profileEdit():
         currUser.update(
             lname = form.lname.data,
             fname = form.fname.data,
+            role = form.role.data
         )
+
+        currUser.update(
+            lname = form.lname.data,
+            fname = form.fname.data,
+            LearningTitle = form.LearningTitle.data
+        )
+
         # This updates the profile image
         if form.image.data:
             if currUser.image:
@@ -48,5 +56,10 @@ def profileEdit():
     # then sends the user to the page with the edit profile form
     form.fname.data = current_user.fname
     form.lname.data = current_user.lname
+    form.role.data = current_user.role
+
+    form.fname.data = current_user.fname
+    form.lname.data = current_user.lnamess
+    form.LearningTitle.data = current_user.role
 
     return render_template('profileform.html', form=form)

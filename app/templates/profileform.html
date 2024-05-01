@@ -20,6 +20,20 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.role.label }}<br>
+            {{ form.role() }}<br>
+            {% for error in form.role.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.LearningTitle.label }}<br>
+            {{ form.LearningTitle() }}<br>
+            {% for error in form.LearningTitle.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
 
         <p>
             {{ form.image.label }}<br>
@@ -35,5 +49,7 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+
+   
 
 {% endblock %}

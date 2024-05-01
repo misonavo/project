@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<img src="/static/CloudsPNG.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
+
+<img src="/static/CloudsPNG.png" class="rounded float-start" width = "200" hieght= "200" alt="...">    </div>
+
+
+{% if finances %}
+    {% for finance in finances %}
+        <div class="row border-bottom">
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">Date</h3>
+                {% endif %}
+
+                <a href="/finance/{{finance.id}}">
+                    {{moment(finance.createdate).calendar()}}
+                </a>
+            </div>
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">User</h3>
+                {% endif %}
+                {{finance.author.fname}} {{finance.author.lname}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h3 class="display-5">Name</h3>
+                {% endif %}
+                {{finance.title}} <br>
+                {{finance.explanation}} <br>
+                {{finance.question}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+
+{% endif %}
+
+{% endblock %}

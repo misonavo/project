@@ -35,6 +35,9 @@ class User(UserMixin, Document):
     adult_lname = StringField()
     adult_email = StringField()
     consent = BooleanField(default=False)
+    role = StringField()
+    LearningTitle = StringField()
+    
 
     meta = {
         'ordering': ['lname','fname']
@@ -97,3 +100,19 @@ class Clinic(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
+class Finance(Document):
+    author =  ReferenceField('User',reverse_delete_rule=CASCADE) 
+    title = StringField()
+    explanation = StringField()
+    question = StringField()
+    
+    createdate = DateTimeField(default=dt.datetime.utcnow)
+    modifydate = DateTimeField()
+    meta = {
+        'ordering': ['-createdate']
+    }
+
+
+
+    
